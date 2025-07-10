@@ -102,7 +102,7 @@ class WebsiteContentGenerator(APIView):
 
         camp = User.objects.get(pk=(PremiumWebsiteForm.objects.get(pk=questionnaire_id).pk))
 
-        """ supabase_client_url = f'https://bmlrxdnnxhawrhncbvoz.supabase.co/rest/v1/clients?mail=eq.{camp.mail}'
+        supabase_client_url = f'https://bmlrxdnnxhawrhncbvoz.supabase.co/rest/v1/clients?mail=eq.{camp.mail}'
         client_supabase_response = requests.get(
             url=supabase_client_url,
             headers=HEADERS
@@ -536,19 +536,19 @@ class WebsiteContentGenerator(APIView):
                     if faq_response.status_code != 201:
                         print('error faq_response')
                         return Response({'error': 'error faq_response'})
-        """
+
         name = camp.name
         #! change in deployment """
-        new_project_location = f'/Users/daniel/Documents/RoverPass/premium-websites/premium_websites/result/'
+        new_project_location = f'/home/admon/premium-websites-automation/result/'
         subprocess.call([f'mkdir {name}'], cwd=new_project_location, shell=True)
         subprocess.call([f'cp -R ./lone-ranger-lodge-web/* ./{name}/'], cwd=new_project_location, shell=True)
 
-        subprocess.call(['npm cache clean --force'], shell=True)
-
         handle_ract_app_directory = f'/Users/daniel/Documents/RoverPass/premium-websites/premium_websites/result/{name}/'
+        subprocess.call(['rm -rf node_modules'], cwd=handle_ract_app_directory, shell=True)
+        subprocess.call(['npm cache clean --force'], shell=True)
         subprocess.call(['npm install'], cwd=handle_ract_app_directory, shell=True)
         subprocess.call(['npm run build'], cwd=handle_ract_app_directory, shell=True)
-        subprocess.call([f'surge /Users/daniel/Documents/RoverPass/premium-websites/premium_websites/result/{name}/dist/ {camp.domain}'], cwd=handle_ract_app_directory, shell=True)
+        subprocess.call([f'surge /home/admon/premium-websites-automation/result/{name}/dist/ {camp.domain}'], cwd=handle_ract_app_directory, shell=True)
 
         #! change in deployment
         #'/Users/daniel/Documents/RoverPass/premium-websites/premium_websites/result/'

@@ -49,7 +49,7 @@ class User(AbstractUser):
         super().save(*args, **kwargs)
 
         if is_new_instance:
-            self.domain = f"{self.name}.surge.sh"
+            self.domain = f"{self.name.replace(' ', '')}.surge.sh"
 
             self.set_password(self.password)
             super().save(update_fields=['domain', 'password'])
