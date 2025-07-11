@@ -36,7 +36,7 @@ class QandAView(APIView):
         user_id = request.query_params.get('fid')
         type = request.query_params.get('type')
 
-        questionnaire_id = User.objects.filter(pk=user_id).premiumwebsiteform.pk
+        questionnaire_id = User.objects.get(pk=user_id).premiumwebsiteform.pk
         
         all_qas = PremiumWebsiteForm.objects.get(pk=questionnaire_id).qanda_set.all()
         qa = all_qas.get(type=type)
