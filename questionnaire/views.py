@@ -33,8 +33,10 @@ class PremiumWebsiteView(APIView):
 
 class QandAView(APIView):
     def get(self, request):
-        questionnaire_id = request.query_params.get('fid')
+        user_id = request.query_params.get('fid')
         type = request.query_params.get('type')
+
+        questionnaire_id = User.objects.filter(pk=user_id).premiumwebsiteform.pk
         
         all_qas = PremiumWebsiteForm.objects.get(pk=questionnaire_id).qanda_set.all()
         qa = all_qas.get(type=type)
@@ -544,6 +546,7 @@ class WebsiteContentGenerator(APIView):
         subprocess.call([f'cp -R ./lone-ranger-lodge-web/* ./{name}/'], cwd=new_project_location, shell=True)
 
         handle_ract_app_directory = f'/Users/daniel/Documents/RoverPass/premium-websites/premium_websites/result/{name}/'
+        subprocess.call(['rm -rf package.json'], cwd=handle_ract_app_directory, shell=True)
         subprocess.call(['rm -rf node_modules'], cwd=handle_ract_app_directory, shell=True)
         subprocess.call(['npm cache clean --force'], shell=True)
         subprocess.call(['npm install'], cwd=handle_ract_app_directory, shell=True)
