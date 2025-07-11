@@ -104,7 +104,7 @@ class WebsiteContentGenerator(APIView):
 
         camp = User.objects.get(pk=(PremiumWebsiteForm.objects.get(pk=questionnaire_id).pk))
 
-        supabase_client_url = f'https://bmlrxdnnxhawrhncbvoz.supabase.co/rest/v1/clients?mail=eq.{camp.mail}'
+        supabase_client_url = f'https://bmlrxdnnxhawrhncbvoz.supabase.co/rest/v1/clients?id=eq.{camp.pk}'
         client_supabase_response = requests.get(
             url=supabase_client_url,
             headers=HEADERS
