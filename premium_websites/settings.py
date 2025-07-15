@@ -143,3 +143,10 @@ REST_FRAMEWORK = {
 }
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://roverpass-forms.surge.sh",
+    'https://roverpass-dashboard.surge.sh/',
+    "http://localhost:3000",
+]
