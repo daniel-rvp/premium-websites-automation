@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ny-bty#xl_jdburj)sb-jw9v=av#!ox(pg@*zkdwia8636-t-b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ai-app.roverpass.com', 'www.ai-app.roverpass.com', '134.209.69.229']
+ALLOWED_HOSTS = ['ai-app.roverpass.com', 'www.ai-app.roverpass.com', '134.209.69.229', 'localhost']
 
 
 # Application definition

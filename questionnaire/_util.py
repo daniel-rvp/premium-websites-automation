@@ -6,7 +6,8 @@ from google import genai
 
 URL = "http://localhost:11434/api/chat"
 
-client_google = genai.Client(api_key=os.getenv('GOOGLE_API_KEY'))
+#client_google = genai.Client(api_key=os.getenv('GOOGLE_API_KEY'))
+client_google = genai.Client(api_key='AIzaSyCQEKjCcM-kHsFbbB3qp1F54xVUX_BCBwM')
 
 
 def gemini(prompt: str):

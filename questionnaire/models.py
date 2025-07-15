@@ -67,8 +67,6 @@ class User(AbstractUser):
                 )
                 new_q_and_a.save()
 
-            print(self.my_token)
-
             response = requests.post(
                 url='https://bmlrxdnnxhawrhncbvoz.supabase.co/rest/v1/clients',
                 headers={

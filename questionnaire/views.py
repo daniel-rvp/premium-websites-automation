@@ -100,9 +100,9 @@ class QandAView(APIView):
 
 class WebsiteContentGenerator(APIView):
     def get(self, request):
-        questionnaire_id = request.query_params.get('fid')
+        user_id = request.query_params.get('fid')
 
-        camp = User.objects.get(pk=(PremiumWebsiteForm.objects.get(pk=questionnaire_id).pk))
+        camp = User.objects.get(pk=user_id)
 
         supabase_client_url = f'https://bmlrxdnnxhawrhncbvoz.supabase.co/rest/v1/clients?id=eq.{camp.pk}'
         client_supabase_response = requests.get(
@@ -113,7 +113,7 @@ class WebsiteContentGenerator(APIView):
         data = json.loads(client_supabase_response.content.decode('utf-8'))[0]
         client_id = data['id']
 
-        qa = PremiumWebsiteForm.objects.get(pk=questionnaire_id)
+        qa = camp.premiumwebsiteform
 
         qandas = qa.qanda_set.all()
 
